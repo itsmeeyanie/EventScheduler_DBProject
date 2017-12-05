@@ -45,11 +45,11 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     $date = $ym.'-'.$day;
      
     if ($today == $date) {
-        $week .= '<td class="today">'.$day;
+        $week .= '<td class="today"><a href="function.php" style="text-decoration: none; color:#393f3e;">'.$day;
     } else {
-        $week .= '<td>'.$day;
+        $week .= '<td><a href="function.php" style="text-decoration: none; color:#393f3e;">'.$day;
     }
-    $week .= '</td>';
+    $week .= '</a></td>';
      
     // End of the week OR End of the month
     if ($str % 7 == 6 || $day == $day_count) {
@@ -70,7 +70,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
  
 ?>
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -90,7 +90,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
        
                 <h3 class="text-center">
                     <div class="col-1" style="float: left;">
-                        <a class="text-white" style="text-decoration: none;"s href="?ym=<?php echo $prev; ?>">&lt;</a>
+                        <a class="text-white" style="text-decoration: none;" href="?ym=<?php echo $prev; ?>">&lt;</a>
                     </div>
                         <?php echo $html_title; ?> 
                     <div class="col-1" style="float: right;">
@@ -100,9 +100,9 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
                 </h3>
             </div>
             
-            <table class="table table-bordered calendar">
+            <table class="table table-border">
                 <tr>
-                    <thead>
+                    <thead style="background-color: #f4f4f4;">
                         <th>SUN</th>
                         <th>MON</th>
                         <th>TUE</th>

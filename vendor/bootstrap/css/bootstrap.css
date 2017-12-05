@@ -89,7 +89,7 @@
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+    border: 2px solid #3a4144 !important;
   }
 }
 
