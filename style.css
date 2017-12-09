@@ -46,7 +46,7 @@ td a {
     text-decoration: unset;
 }
 
-input[type=text], select {
+input[type=text], input[type=date], select {
     padding: 8px 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -68,3 +68,6 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+/*i:hover {
+    mix-blend-mode: hue;
+}*/
