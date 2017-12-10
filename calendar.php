@@ -85,11 +85,6 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 
 </head>
 <body>
-
-    <?php 
-        // include("nav.php");
-    ?>
-
     <!-- CALENDAR -->
     <div class="container">
         <div class="panel">

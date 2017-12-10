@@ -5,6 +5,7 @@
 
 	<!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="vendor/bootstrap/css/font-awesome.css" rel="stylesheet">
     
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -17,6 +18,8 @@
 
 </head>
 <body>
+
+
 	<!-- /. ROW  -->
 	<div class="pt-5 offset-2">
 		<a href="#" onclick="history.go(-1)">
@@ -30,15 +33,51 @@
 		</div>
 
     <div class="modal fade" id="popUpWindow">
-    	<div class="modal-dialog">
+    	<div class="modal-dialog pt-5" style="margin-top: 150px;">
     		<div class="modal-content">
-    			<div class="panel-heading modal-header">
-            		<button type="button" class="btn btn-default close" data-dismiss="modal">&times;</button>
-            		<br>
-            		<form>
-            			
-            		</form>
-                </div>
+    			<div class="panel-heading modal-header bg-primary">
+    				<h4 class="modal-title text-center">Add New Event</h4>
+            	</div>
+            	<br>
+            	<div class="modal-body">
+        			<form class="form-horizontal" action="" method="post">
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <input name="" type="" class="form-control" placeholder="Organization" value="" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <input name="" type="" class="form-control" placeholder="Event" value="" required="">
+                                </div>
+                            </div>
+                            <div>
+                            	<p>[SCHEDULE]</p>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                	<label>Start</label>
+                                    <input name="" type="time" class="form-control" placeholder="Start" value="12:00" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                	<label>End</label>
+                                    <input name="" type="time" class="form-control" placeholder="End" value="12:00" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8 offset-2">
+                                    <button type="submit" name="submit" value="Submit" class="btn btn-primary">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                    </form>
+      			</div>
+            	<div class="modal-footer">
+        			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      			</div>
     		</div>
     	</div>
     </div>
@@ -83,5 +122,8 @@
 			</div>
 	    </div>
 	</div>
+
+	    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
