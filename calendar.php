@@ -83,20 +83,34 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     
     <link rel="stylesheet" type="text/css" href="fonts/TheLightFont.ttf">
 
+    <style>
+        body {
+            background-color: #f7f9fc;
+        }
+    </style>
 </head>
 <body>
+    <div>
+        <div class="offset-1 pt-4" style="float: left;">
+            <a class="" href="calendar.php">Logo</a>
+        </div>
+        <div class="col-md-8 offset-8 pt-4">
+            <label>Search</label>
+            <input type="month" name="" value="<?php echo $ym; ?>">
+            <button class="btn btn-default">Filter</button>
+        </div>
+    </div>
     <!-- CALENDAR -->
     <div class="container">
         <div class="panel">
-            <div class="panel-heading text-white p-4" style="background-color: #17a2b8">
-       
+            <div class="panel-heading text-white p-4" style="background-color: #353c47;">
                 <h3 class="text-center">
                     <div class="col-1" style="float: left;">
-                        <a class="text-white" style="text-decoration: none;" href="?ym=<?php echo $prev; ?>">&lt;</a>
+                        <a class="text-white" style="text-decoration: none;" href="?ym=<?php echo $prev; ?>">&#10094;</a>
                     </div>
                         <?php echo $html_title; ?> 
                     <div class="col-1" style="float: right;">
-                        <a class="text-white" style="text-decoration: none;" href="?ym=<?php echo $next; ?>">&gt;</a>
+                        <a class="text-white" style="text-decoration: none;" href="?ym=<?php echo $next; ?>">&#10095;</a>
                     </div>
                     
                 </h3>
