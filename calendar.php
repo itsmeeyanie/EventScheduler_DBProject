@@ -118,7 +118,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             
             <table class="table table-bordered">
                 <tr>
-                    <thead style="background-color: #f4f4f4;">
+                    <thead style="background-color: #e8ebef;">
                         <th>SUN</th>
                         <th>MON</th>
                         <th>TUE</th>
