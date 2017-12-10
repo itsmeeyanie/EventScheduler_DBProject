@@ -21,6 +21,8 @@ $today = date('Y-m-j', time());
  
 // For H3 title
 $html_title = date('F Y', $timestamp);
+
+$dt = date('M j', $timestamp);
  
 // Create prev & next month link     mktime(hour,minute,second,month,day,year)
 $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
@@ -45,9 +47,9 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     $date = $ym.'-'.$day;
      
     if ($today == $date) {
-        $week .= '<td class="today"><a href="function.php" style="text-decoration: none; color:#393f3e;">'.$day;
+        $week .= '<td class="today"><a href="function.php" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
     } else {
-        $week .= '<td><a href="function.php" style="text-decoration: none; color:#393f3e;">'.$day;
+        $week .= '<td><a href="function.php" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
     }
     $week .= '</a></td>';
      
@@ -82,12 +84,6 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     <link rel="stylesheet" type="text/css" href="style.css">
     
     <link rel="stylesheet" type="text/css" href="fonts/TheLightFont.ttf">
-
-    <style>
-        body {
-            background-color: #f7f9fc;
-        }
-    </style>
 </head>
 <body>
     <div>
@@ -95,13 +91,14 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             <a class="" href="calendar.php">Logo</a>
         </div>
         <div class="col-md-8 offset-8 pt-4">
-            <label>Search</label>
+            <label><b>Search</b></label>
             <input type="month" name="" value="<?php echo $ym; ?>">
             <button class="btn btn-default">Filter</button>
         </div>
     </div>
+
     <!-- CALENDAR -->
-    <div class="container">
+    <div class="container col-md-8 pl-5" style="float: left;">
         <div class="panel">
             <div class="panel-heading text-white p-4" style="background-color: #353c47;">
                 <h3 class="text-center">
@@ -140,5 +137,35 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             </table>
         </div>
     </div>
+
+    <!-- Event Details -->
+    <div class="row col-xs-4 p-5">
+    <div class="text-center">
+        <div class="panel panel-default panel-group p-3" style="background-color: #e8ebef;">
+            <div class="panel-heading p-3"><b>Events for <?php echo $html_title; ?></b></div>
+                <div class="panel-body">
+                    <table width="350px" style="font-size: 13px;">
+                        <tr class="text-center">
+                        <thead>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Event</th> 
+                        </thead>
+                        </tr>
+
+                        <tr class="text-center">
+                        <tbody>
+                            <td><?php echo $dt; ?></td>
+                            <td>10:30 - 11:45</td>
+                            <td>DevCon Summit 2017</td>
+                        </tbody>
+                        </tr>
+                    </table>
+            </div>
+            <div class="panel-footer bg-primary"></div>
+        </div>
+    </div>
+    </div>
+
 </body>
 </html>
