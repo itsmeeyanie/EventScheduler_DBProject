@@ -1,6 +1,10 @@
 ul {list-style-type: none;}
 body {
     background-color: #f7f9fc;
+}
+.container {
+    font-family: Verdana, sans-serif;
+    margin-top: 50px;
     height: 100vh;
     margin: 0;
     overflow-y: auto;
@@ -15,19 +19,26 @@ html {
     padding: 0 auto;
 }
 
-div {
-    overflow-y: hidden;
-    overflow-x: hidden;
-}
-
-.container {
-    font-family: Verdana, sans-serif;
-    margin-top: 50px;
-    background-color: ;
-}
-
 .today {
-    background-color: #e8ebef;
+    background-color: rgb( 230, 230, 230 );
+}
+
+th:nth-of-type(7), td:nth-of-type(7) {
+    color: #146bce;
+}
+
+th:nth-of-type(1), td:nth-of-type(1) {
+    color: #dc3545;
+}
+
+th {
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+}
+td {
+    height: 100px;
+    font-weight: bold;
 }
 
 .table-border td {

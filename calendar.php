@@ -47,9 +47,9 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     $date = $ym.'-'.$day;
      
     if ($today == $date) {
-        $week .= '<td class="today"><a href="function.php" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
+        $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
     } else {
-        $week .= '<td><a href="function.php" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
+        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
     }
     $week .= '</a></td>';
      
@@ -71,6 +71,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 }
  
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +99,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     </div>
 
     <!-- CALENDAR -->
-    <div class="container col-md-8 pl-5" style="float: left;">
+    <div class="container">
         <div class="panel">
             <div class="panel-heading text-white p-4" style="background-color: #353c47;">
                 <h3 class="text-center">
@@ -115,7 +116,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             
             <table class="table table-bordered">
                 <tr>
-                    <thead style="background-color: #e8ebef;">
+                    <thead class="text-center" style="background-color: #e8ebef;">
                         <th>SUN</th>
                         <th>MON</th>
                         <th>TUE</th>
@@ -139,7 +140,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     </div>
 
     <!-- Event Details -->
-    <div class="row col-xs-4 p-5">
+<!--     <div class="row col-xs-4 p-5">
     <div class="text-center">
         <div class="panel panel-default panel-group p-3" style="background-color: #e8ebef;">
             <div class="panel-heading p-3"><b>Events for <?php echo $html_title; ?></b></div>
@@ -165,7 +166,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             <div class="panel-footer bg-primary"></div>
         </div>
     </div>
-    </div>
+    </div> -->
 
 </body>
 </html>
