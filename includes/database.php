@@ -16,7 +16,7 @@
 ?>
 
 	<?php
-		$query = "SELECT  * from tbl_event WHERE rdate='2017-12-11'";
+		$query = "SELECT  * from tbl_event WHERE rdate='2017-12-29' order by id asc";
 		$result = mysqli_query($connection, $query);
 		if(!$result) {
 			die("Database query failed.");

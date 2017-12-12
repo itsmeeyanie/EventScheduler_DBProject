@@ -67,13 +67,7 @@
                             <p class="offset-5 text-white">View Details</p>
                         </div>
                     
-                    <form class="form-horizontal offset-2 col-md-10 pt-5" action="" method="post">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <label for="idnum">IdNum: </label>
-                                <span class="offset-2 p-4" style="color: teal;"><strong><?php echo $id; ?></strong></span>
-                            </div>
-                        </div>
+                    <form class="form-horizontal offset-2 col-md-10 pt-5" action="" method="">
                         <div class="form-group">
                             <div class="col-md-8">
 
