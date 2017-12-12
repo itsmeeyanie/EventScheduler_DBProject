@@ -81,16 +81,19 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap/css/font-awesome.css" rel="stylesheet">
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
     
     <link rel="stylesheet" type="text/css" href="fonts/TheLightFont.ttf">
 </head>
 <body>
     <div>
-        <div class="offset-1 pt-4" style="float: left;">
-            <a class="" href="calendar.php">Logo</a>
+        <div class="p-3 offset-2">
+            <a class="" href="calendar.php" style="text-decoration: none;"><i class="fa fa-calendar"> CALENDAR</i></a>
         </div>
+    </div>
         <div class="col-md-8 offset-8 pt-4">
             <label><b>Search</b></label>
             <input type="month" name="" value="<?php echo $ym; ?>">
@@ -99,7 +102,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     </div>
 
     <!-- CALENDAR -->
-    <div class="container">
+    <div class="container pb-5">
         <div class="panel">
             <div class="panel-heading text-white p-4" style="background-color: #353c47;">
                 <h3 class="text-center">
@@ -116,14 +119,14 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             
             <table class="table table-bordered">
                 <tr>
-                    <thead class="text-center" style="background-color: #e8ebef;">
-                        <th>SUN</th>
-                        <th>MON</th>
-                        <th>TUE</th>
-                        <th>WED</th>
-                        <th>THU</th>
-                        <th>FRI</th>
-                        <th>SAT</th>
+                    <thead style="background-color: #e8ebef;">
+                        <th class="text-center">SUN</th>
+                        <th class="text-center">MON</th>
+                        <th class="text-center">TUE</th>
+                        <th class="text-center">WED</th>
+                        <th class="text-center">THU</th>
+                        <th class="text-center">FRI</th>
+                        <th class="text-center">SAT</th>
                     </thead>
                 </tr>
                 <tr>

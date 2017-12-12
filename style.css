@@ -4,7 +4,6 @@ body {
 }
 .container {
     font-family: Verdana, sans-serif;
-    margin-top: 50px;
     height: 100vh;
     margin: 0;
     overflow-y: auto;
@@ -32,6 +31,7 @@ th:nth-of-type(1), td:nth-of-type(1) {
 }
 
 th {
+    text-align: center;
     height: 30px;
     text-align: center;
     font-size: 18px;

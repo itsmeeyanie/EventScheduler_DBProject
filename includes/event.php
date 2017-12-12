@@ -48,8 +48,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="../vendor/bootstrap/css/font-awesome.css" rel="stylesheet">
 
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
      <!-- FontAwesome Styles-->
@@ -63,9 +61,7 @@
 
     <!-- /. ROW  -->
     <div class="p-3 offset-2">
-        <a href="../calendar.php" style="text-decoration: none;">
-            CALENDAR
-        </a>
+        <a class="" href="../calendar.php" style="text-decoration: none;"><i class="fa fa-calendar"> CALENDAR</i></a>
     </div>
 
     <div class="container navbar-default p-5">
@@ -151,10 +147,10 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                 <thead>
                                             <tr>
-                                                <th width="5%">#</th>
-                                                <th width="25%">Time</th>
-                                                <th width="40%">Event</th>
-                                                <th width="25%">Action</th>
+                                                <th class="text-center" width="5%">#</th>
+                                                <th class="text-center" width="25%"><i class="fa fa-clock-o"></th>
+                                                <th class="text-center" width="40%">Event</th>
+                                                <th class="text-center" width="25%">Action</th>
                                                 
                                             </tr>
                                         </thead>
