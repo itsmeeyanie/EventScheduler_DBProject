@@ -1,9 +1,6 @@
 ul {list-style-type: none;}
 body {
     background-color: #f7f9fc;
-}
-.container {
-    font-family: Verdana, sans-serif;
     height: 100vh;
     margin: 0;
     overflow-y: auto;
@@ -18,27 +15,19 @@ html {
     padding: 0 auto;
 }
 
+div {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.container {
+    font-family: Verdana, sans-serif;
+    margin-top: 30px;
+    background-color: ;
+}
+
 .today {
-    background-color: rgb( 230, 230, 230 );
-}
-
-th:nth-of-type(7), td:nth-of-type(7) {
-    color: #146bce;
-}
-
-th:nth-of-type(1), td:nth-of-type(1) {
-    color: #dc3545;
-}
-
-th {
-    text-align: center;
-    height: 30px;
-    text-align: center;
-    font-size: 18px;
-}
-td {
-    height: 100px;
-    font-weight: bold;
+    background-color: #9ed6ce;
 }
 
 .table-border td {
@@ -82,6 +71,6 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
-/*i:hover {
-    mix-blend-mode: hue;
-}*/
+a:hover {
+    mix-blend-mode: hard-light;
+}

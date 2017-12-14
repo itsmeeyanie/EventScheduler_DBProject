@@ -9,6 +9,7 @@ if (isset($_GET['ym'])) {
     // This month
     $ym = date('Y-m');
 }
+
  
 // Check format
 $timestamp = strtotime($ym . '-01');
@@ -47,9 +48,9 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     $date = $ym.'-'.$day;
      
     if ($today == $date) {
-        $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
+        $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px;">'.$day;
     } else {
-        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; color:#393f3e; height: 75px;">'.$day;
+        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px;">'.$day;
     }
     $week .= '</a></td>';
      
@@ -89,15 +90,13 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     <link rel="stylesheet" type="text/css" href="fonts/TheLightFont.ttf">
 </head>
 <body>
-    <div>
-        <div class="p-3 offset-2">
-            <a class="" href="calendar.php" style="text-decoration: none;"><i class="fa fa-calendar"> CALENDAR</i></a>
-        </div>
-    </div>
-        <div class="col-md-8 offset-8 pt-4">
-            <label><b>Search</b></label>
-            <input type="month" name="" value="<?php echo $ym; ?>">
-            <button class="btn btn-default">Filter</button>
+    <div class="pt-5 col-md-12">
+        <a class="offset-1" href="calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
+        <div class="col-md-4 p-2" style="float: right;">
+            <form method="post">
+            <input name="det" type="month" value="<?php echo $ym; ?>">
+            <button class="btn btn-default" name="search">Filter</button>
+            </form>
         </div>
     </div>
 
@@ -168,8 +167,8 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
             </div>
             <div class="panel-footer bg-primary"></div>
         </div>
-    </div>
-    </div> -->
+    </div>-->
+    </div> 
 
 </body>
 </html>

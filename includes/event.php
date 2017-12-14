@@ -7,7 +7,7 @@
 
     $today = date_create($ddate);
 
-    $query = "select * from tbl_event";
+    $query = "SELECT * FROM tbl_event";
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed.");
@@ -26,6 +26,8 @@
   ?>
 
   <?php 
+  //SELECT id, stime, etime, event from tbl_event WHERE rdate='$ddate' 
+  //CALL getDataByDate('$ddate')
     $sql = "SELECT id, stime, etime, event from tbl_event WHERE rdate='$ddate'";
     $res = mysqli_query($connection, $sql);
     if(!$res) {
@@ -58,16 +60,12 @@
 </head>
 <body>
 
-
-    <!-- /. ROW  -->
-    <div class="p-3 offset-2">
-        <a class="" href="../calendar.php" style="text-decoration: none;"><i class="fa fa-calendar"> CALENDAR</i></a>
-    </div>
-
-    <div class="container navbar-default p-5">
+    <div class="container navbar-default p-5" style="margin-top: 30px;">
+        <a class="offset-2" href="../calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
         <div class="col-md-3 offset-2" style="float: right;">
             <button class="btn btn-primary" data-toggle="modal" data-target="#popUpWindow">+ Add Event</button>
         </div>
+
 
         <!-- Add Event Modal -->
     <div class="modal fade" id="popUpWindow">
@@ -180,11 +178,11 @@
                                         </tbody>
                             </table> 
 
-                            <?php
-        if($rowcount==0){
-            echo "<span style=\"font-size: 16px;\"><b>No schedule.</b></span>";
-        }
-    ?>   
+                                <?php
+                                    if($rowcount==0){
+                                        echo "<span style=\"font-size: 16px;\"><b>No schedule.</b></span>";
+                                    }
+                                ?>   
                         </div>
                     </div>
                 </div>

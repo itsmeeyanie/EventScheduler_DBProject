@@ -85,8 +85,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-8 offset-2">
-                                    <button type="submit" name="edit" value="Submit" class="btn btn-success">
+                                <div class="col-md-10">
+                                    <a href="#" onclick="history.go(-1)"><button class="btn btn-default col-md-2">Cancel</button> 
+
+                                    <button type="submit" name="edit" value="Submit" class="btn btn-success col-md-6 offset-1">
                                         Save
                                     </button>
                                 </div>
