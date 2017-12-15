@@ -27,7 +27,7 @@ div {
 }
 
 .today {
-    background-color: #9ed6ce;
+    background-color: #dddcc1;
 }
 
 .table-border td {
@@ -36,6 +36,16 @@ div {
 
 .table-border th {
     border: 2px solid #b3b7bc !important;
+}
+
+td {
+    font-family: 'Monospace';
+    font-weight: bolder;
+}
+
+h3 {
+    font-family: 'Courier New';
+    font-weight: bolder;
 }
 
 td:hover {

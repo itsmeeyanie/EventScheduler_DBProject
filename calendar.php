@@ -1,4 +1,5 @@
 <?php
+require_once('includes/db_connection.php');
 // Set your timezone!!
 date_default_timezone_set('Asia/Manila');
  
@@ -70,7 +71,8 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     }
  
 }
- 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -91,8 +93,8 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 </head>
 <body>
     <div class="pt-5 col-md-12">
-        <a class="offset-1" href="calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
-        <div class="col-md-4 p-2" style="float: right;">
+        <h5><a class="offset-1" href="calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a></h5>
+        <div class="col-md-3 p-2" style="float: right;">
             <form method="post">
             <input name="det" type="month" value="<?php echo $ym; ?>">
             <button class="btn btn-default" name="search">Filter</button>

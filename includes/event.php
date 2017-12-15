@@ -7,34 +7,15 @@
 
     $today = date_create($ddate);
 
-    $query = "SELECT * FROM tbl_event";
+    //"SELECT * FROM tbl_event  WHERE rdate='$ddate'"
+    $query = "call viewDataByDate('$ddate')";
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed.");
-    }
-
-    while($row=mysqli_fetch_assoc($result)){
-        $id = $row['id'];
-        $event = $row['event'];
-        $fname = $row['fname'];
-        $org = $row['org'];
-        $cnum = $row['cnum'];
-        $date = $row['rdate'];
-        $stime = $row['stime'];
-        $etime = $row['etime'];
-    }
-  ?>
-
-  <?php 
-  //SELECT id, stime, etime, event from tbl_event WHERE rdate='$ddate' 
-  //CALL getDataByDate('$ddate')
-    $sql = "SELECT id, stime, etime, event from tbl_event WHERE rdate='$ddate'";
-    $res = mysqli_query($connection, $sql);
-    if(!$res) {
-      die("Database query failed.");
     }else{
-      $rowcount=mysqli_num_rows($res);
+      $rowcount=mysqli_num_rows($result);
     }
+    
   ?>
 
   <?php
@@ -154,9 +135,13 @@
                                         </thead>
                                         <tbody class="text-center"> 
                                             <?php
-                                                while($row=mysqli_fetch_assoc($res)){
+                                                while($row=mysqli_fetch_assoc($result)){
                                                     $id = $row['id'];
                                                     $event = $row['event'];
+                                                    $fname = $row['fname'];
+                                                    $org = $row['org'];
+                                                    $cnum = $row['cnum'];
+                                                    $date = $row['rdate'];
                                                     $stime = $row['stime'];
                                                     $etime = $row['etime'];
                                                     
@@ -214,6 +199,8 @@
     $stime = mysqli_real_escape_string($connection, $_POST['stime']);
     $etime = mysqli_real_escape_string($connection, $_POST['etime']);
 
+    //"INSERT INTO tbl_event(event, fname, org, cnum, rdate, stime, etime) values ('{$event}', '{$fname}', '{$org}', '{$cnum}', '{$rdate}', '{$stime}', '{$etime}')"
+    //"call add_event('$event', '$fname', '$org'. '$cnum', '$rdate', '$stime', '$etime')"
     $query = "INSERT INTO tbl_event(event, fname, org, cnum, rdate, stime, etime) values ('{$event}', '{$fname}', '{$org}', '{$cnum}', '{$rdate}', '{$stime}', '{$etime}')";
     $result = mysqli_query($connection, $query);
     if($result) {
