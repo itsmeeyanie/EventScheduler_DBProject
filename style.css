@@ -49,8 +49,7 @@ h3 {
 }
 
 td:hover {
-    /*background-color: #d1fff1;*/
-    mix-blend-mode: hard-light;
+    background-color: #c3ddd2;
 }
 
 td a {

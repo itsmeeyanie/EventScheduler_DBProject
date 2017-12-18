@@ -64,7 +64,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
         $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day;
 
     }elseif ($rowcount > 0){
-        $week .= '<td class=""><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 20px;"></span>';
+        $week .= '<td class=""><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 30px;"></span>';
     } else {
         $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day;
     }
