@@ -24,7 +24,7 @@ $today = date('Y-m-j', time());
 // For H3 title
 $html_title = date('F Y', $timestamp);
 
-$dt = date('M j', $timestamp);
+$dt = date('M j, Y', $timestamp);
  
 // Create prev & next month link     mktime(hour,minute,second,month,day,year)
 $prev = date('Y-m', mktime(0, 0, 0, date('m', $timestamp)-1, 1, date('Y', $timestamp)));
@@ -43,15 +43,30 @@ $week = '';
  
 // Add empty cell
 $week .= str_repeat('<td></td>', $str);
+
+    
+
  
 for ( $day = 1; $day <= $day_count; $day++, $str++) {
      
     $date = $ym.'-'.$day;
+
+    // query
+    $query = "SELECT rdate from tbl_event where rdate='$date'";
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
+        die("Database query failed.");
+    }else{
+      $rowcount=mysqli_num_rows($result);
+    }
      
     if ($today == $date) {
-        $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px;">'.$day;
+        $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day;
+
+    }elseif ($rowcount > 0){
+        $week .= '<td class=""><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 20px;"></span>';
     } else {
-        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px;">'.$day;
+        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day;
     }
     $week .= '</a></td>';
      
@@ -71,6 +86,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     }
  
 }
+      
 
 
 ?>

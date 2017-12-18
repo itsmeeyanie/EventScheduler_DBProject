@@ -7,8 +7,8 @@
 
     $today = date_create($ddate);
 
-    //"SELECT * FROM tbl_event  WHERE rdate='$ddate'"
-    $query = "call viewDataByDate('$ddate')";
+    //"call viewDataByDate('$ddate')"
+    $query = "SELECT * FROM tbl_event  WHERE rdate='$ddate'";
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed.");
@@ -124,7 +124,7 @@
                          <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                                <thead>
+                                        <thead>
                                             <tr>
                                                 <th class="text-center" width="5%">#</th>
                                                 <th class="text-center" width="25%"><i class="fa fa-clock-o"></th>
@@ -187,7 +187,11 @@
   mysqli_free_result($result);
 ?>
 
-<!-- add -->
+<?php 
+
+?>
+
+<!-- add --> 
 <?php
 
   if(isset($_POST['add']) ) { 
