@@ -44,14 +44,14 @@ $week = '';
 // Add empty cell
 $week .= str_repeat('<td></td>', $str);
 
-    
-
  
 for ( $day = 1; $day <= $day_count; $day++, $str++) {
      
     $date = $ym.'-'.$day;
 
-    // query
+    //$search = array('$day' => $ym );
+
+    // query SELECT rdate from tbl_event where rdate='$date' "call selectByDate('$date')"
     $query = "SELECT rdate from tbl_event where rdate='$date'";
     $result = mysqli_query($connection, $query);
     if(!$result) {
@@ -64,7 +64,7 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
         $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day;
 
     }elseif ($rowcount > 0){
-        $week .= '<td class=""><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 30px;"></span>';
+        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 30px;"></span>';
     } else {
         $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #38594f;">'.$day;
     }
@@ -109,7 +109,11 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 </head>
 <body>
     <div class="pt-5 col-md-12">
-        <h5><a class="offset-1" href="calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a></h5>
+        <h5>
+            <a class="offset-1" href="calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
+            <a href="includes/eventlist.php" style="text-decoration: none; float: left; font-size: 20px; color: teal; margin-left: 25px;"><i class="fa fa-check-circle"> EVENTS</i></a>
+        </h5>
+
         <div class="col-md-3 p-2" style="float: right;">
             <form method="post">
             <input name="det" type="month" value="<?php echo $ym; ?>">
