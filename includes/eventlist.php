@@ -48,7 +48,7 @@
 <body>
   <div class="container navbar-default p-5" style="margin-top: 30px;">
         <h5>
-            <a class="offset-1" href="../calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
+            <a class="offset-1 text-dark" href="../calendar.php" style="text-decoration: none; float: left; font-size: 18px;"><i class="fa fa-calendar"> Calendar View</i></a>
         </h5>
 
     

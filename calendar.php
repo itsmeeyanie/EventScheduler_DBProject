@@ -110,8 +110,8 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 <body>
     <div class="pt-5 col-md-12">
         <h5>
-            <a class="offset-1" href="calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
-            <a href="includes/eventlist.php" style="text-decoration: none; float: left; font-size: 20px; color: teal; margin-left: 25px;"><i class="fa fa-check-circle"> EVENTS</i></a>
+            <a class="offset-1 text-dark" href="calendar.php" style="text-decoration: none; float: left; font-size: 18px;"><i class="fa fa-calendar"> Calendar View</i></a>
+            <a class="text-dark" href="includes/eventlist.php" style="text-decoration: none; float: left; font-size: 18px; margin-left: 20px;"><i class="fa fa-table"> List View</i></a>
         </h5>
 
         <div class="col-md-3 p-2" style="float: right;">
