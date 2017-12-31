@@ -108,7 +108,6 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     <link rel="stylesheet" type="text/css" href="../style.css">
 
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
-    
     <link rel="stylesheet" type="text/css" href="fonts/TheLightFont.ttf">
 </head>
 <body>
@@ -123,19 +122,11 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
         }
     ?>
 
-
-    <div class="col-md-12 pt-5">
-        <div class="pt-5 offset-1" style="margin-top: 50px;">
-            <button class="btn btn-default"><a class="offset-1 text-dark" href="../public/calendar.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
+    <div class="col-md-12">
+        <div class="offset-1 pt-5 btn-group" style="margin-top: 50px;">
+            <button class="btn btn-default"><a class="offset-1 text-dark" href="../admin/index.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
             <button class="btn btn-default"><a class="text-dark" href="../includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
         </div>
-
-        <!-- <div class="col-md-3 p-5 offset-8">
-            <form class=" pt-5" method="post">
-            <input name="det" type="month" value="<?php echo $ym; ?>">
-            <button class="btn btn-default" name="search">Filter</button>
-            </form>
-        </div> -->
     </div>
 
     <!-- CALENDAR -->

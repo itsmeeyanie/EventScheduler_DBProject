@@ -5,10 +5,6 @@
         $data = $_GET['id'];
     }
 
-    if(isset($_GET['date'])){
-        $ddate = $_GET['date'];
-    }
-
     //"SELECT * from tbl_event WHERE id=".$data
     $query = "call viewDataById('$data')";
     $result = mysqli_query($connection, $query);
@@ -56,7 +52,7 @@
                             <p class="offset-5 text-white">Edit Event</p>
                         </div>
                     
-                    <form class="form-horizontal p-5 offset-2" action="../public/event.php?id=<?php echo $id; ?>&date=<?php echo $ddate; ?>" method="post">
+                    <form class="form-horizontal p-5 offset-2" action="../includes/config.php?id=<?php echo $id; ?>" method="post">
                             <div class="form-group">
                                 <div class="col-md-8">
                                   <input name="id" class="form-control" value="<?php echo $id; ?>" readonly>

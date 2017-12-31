@@ -20,7 +20,9 @@
     <style>
 		body{
 			width: 500px;
-			height: 700px;
+	    margin: 0;
+	    overflow-y: hidden;
+	    overflow-x: hidden;
 			margin-left: 4.5in;
 			margin-top: 2in;
 			background-color: #353c47;
@@ -52,24 +54,7 @@
 
 		button:hover {
 		    opacity: 0.8;
-		}
 
-		span.psw {
-		    float: right;
-		    padding-top: 16px;
-		}
-
-
-		/* Change styles for span and cancel button on extra small screens */
-		@media screen and (max-width: 300px) {
-		    span.psw {
-		       display: block;
-		       float: none;
-		    }
-		    .cancelbtn {
-		       width: 100%;
-		    }
-		}
 	</style>
 </head>
 

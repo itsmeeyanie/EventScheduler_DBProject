@@ -48,7 +48,7 @@ include("../includes/function.php");
       <p class="text-white" style="margin-top: -20px; font-size: 30px;">The intelligent way to plan.</p>
     	<div class="card-img-overlay" style="margin-top: 70px;">
                 <div class="container text-center pt-5">
-                  <a href="includes/login.php">
+                  <a href="../includes/login.php">
                     <button class="btn booknow_button btn-danger" type="button">Get Started</button>
                   </a>
               </div>
