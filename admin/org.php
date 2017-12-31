@@ -3,32 +3,26 @@ include("../includes/session.php");
 include("../includes/function.php"); 
 
 require_once("../includes/db_connection.php");
-
-
-    $qu = "SELECT * FROM client";
-    $res = mysqli_query($connection, $qu);
-    if(!$res) {
-      die("Database query failed.");
-    }else{
-      $rowcount=mysqli_num_rows($res);
+    if(isset($_GET['id'])){
+        $data = $_GET['id'];
     }
 
-    $squery = "SELECT * FROM organization";
-    $sresult = mysqli_query($connection, $squery);
+    if(isset($_GET['org'])){
+        $or= $_GET['org'];
+    }
+
+    $query = "SELECT * FROM organization where id=$data or org='$or'";
+    $sresult = mysqli_query($connection, $query);
     if(!$sresult) {
       die("Database query failed.");
     }else{
       $srowcount=mysqli_num_rows($sresult);
     }
 
-    while($srow=mysqli_fetch_assoc($sresult)){
-        $sid = $srow['id'];
-        $org = $srow['org'];
-        $ad = $srow['ad'];
-        $des = $srow['description'];
-    }
+?>
 
 
+<?php
     if(isset($_GET['order'])){
         $order = $_GET['order'];
     }else{
@@ -40,17 +34,14 @@ require_once("../includes/db_connection.php");
     }else{
         $sort = 'ASC';
     }
-?>
-<?php
-    $query = "SELECT * FROM client ORDER BY $order $sort";
+
+    $query = "SELECT * FROM organization ORDER BY $order $sort";
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed."  . mysqli_error($connection));
     }
 
   ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -86,7 +77,7 @@ require_once("../includes/db_connection.php");
             <div class="panel-group" id="accordion">
                 <div class="panel panel-default">
                     <div class="panel-heading p-4 bg-dark">
-                        <p class="offset-5 text-white">Client's Personal Information</p>
+                        <p class="offset-5 text-white">Organization Details</p>
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -94,35 +85,28 @@ require_once("../includes/db_connection.php");
                                 <thead>
                                     <tr>
                                         <?php $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC'; ?>
-                                        <th class="text-center" width="3%"><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
-                                        <th class="text-center" width="15%"><a href="?order=fname&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organizer</a></th>
-                                        <th class="text-center" width="15%"><a href="?order=email&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Email</a></th>
-                                        <th class="text-center" width="12%"><a href="?order=cnum&&sort=<?php echo $sort; ?>" style="text-decoration: none;" >Contact</a></th>
-                                        <th class="text-center" width="22%"><a href="?order=stat&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Status/Position</a></th>
-                                        <th class="text-center" width="23%"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
+                                        <th class="text-center" width="5%"><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
+                                        <th class="text-center" width="25%"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
+                                        <th class="text-center" width="30%"><a href="?order=des&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Description</a></th>
+                                        <th class="text-center" width="30%"><a href="?order=ad&&sort=<?php echo $sort; ?>" style="text-decoration: none;" >Address</a></th>
                                         <th class="text-center" width="10%"><a href="" style="text-decoration: none;">Action</a></th>
                                     </tr>
                                 </thead>
                                     <tbody class="text-center"> 
                                         <?php
-                                            while($row=mysqli_fetch_assoc($res)){
+                                            while($row=mysqli_fetch_assoc($sresult)){
                                                 $id = $row['id'];
-                                                $fname = $row['fname'];
-                                                $email = $row['email'];
-                                                $cnum = $row['cnum'];
-                                                $stat = $row['stat'];
                                                 $org = $row['org'];
+                                                $ad = $row['ad'];
+                                                $des = $row['description'];
                                         echo "<tr>
                                                 <td>".$id."</td>
-                                                <td>".$fname."</td>  
-                                                <td>".$email."</td> 
-                                                <td>".$cnum."</td>  
-                                                <td>".$stat."</td> 
-                                                <td><a href=\"../admin/org.php?id=$id&&org=$org\" style=\"text-decoration: none; color: orange;\" >".$org."</a></td> 
-                                                
+                                                <td>".$org."</td>
+                                                <td>".$des."</td>   
+                                                <td>".$ad."</td> 
                                                 <td class=\"\">
                                                     <a href=\"\" style=\"text-decoration: none; color: green;\" >Edit |</a>
-                                                    <a href=\"../includes/config.php?idn=$id\" style=\"text-decoration: none; color: brown;\"> Delete</a>
+                                                    <a href=\"../includes/config.php?idnu=$id\" style=\"text-decoration: none; color: brown;\"> Delete</a>
                                                 </td>
                                             <tr>";
 
@@ -131,6 +115,7 @@ require_once("../includes/db_connection.php");
                                                 
                                 </tbody>
                             </table> 
+
                         </div>
                     </div>
                 </div>

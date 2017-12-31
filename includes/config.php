@@ -38,7 +38,7 @@
 		$query = "INSERT INTO client(fname, email, cnum, stat, org) values ('{$fname}', '{$email}', '{$cnum}', '{$stat}', '{$org}')";
 	    $result = mysqli_query($connection, $query);
 	    if($result) {
-	        redirect_to("../admin/client_form.php");
+	        echo "<script type='text/javascript'> alert('Success')</script>";
 	    }else{
 	        die("Database query failed. " . mysqli_error($connection));
 	    }
@@ -79,6 +79,28 @@
                 $result = mysqli_query($connection, $query);
                 if($result) {
                     redirect_to("../includes/eventlist.php");
+                }else{
+                    die("Database query failed. " . mysqli_error($connection));
+                }
+            }
+
+            if(isset($_GET['idn'])) { 
+                $id = mysqli_real_escape_string($connection, $_GET['idn']);
+                $query = "DELETE FROM client WHERE id=".$id;
+                $result = mysqli_query($connection, $query);
+                if($result) {
+                    redirect_to("../admin/client_records.php");
+                }else{
+                    die("Database query failed. " . mysqli_error($connection));
+                }
+            }
+
+            if(isset($_GET['idnu'])) { 
+                $id = mysqli_real_escape_string($connection, $_GET['idnu']);
+                $query = "DELETE FROM organization WHERE id=".$id;
+                $result = mysqli_query($connection, $query);
+                if($result) {
+                    redirect_to("../admin/client_records.php");
                 }else{
                     die("Database query failed. " . mysqli_error($connection));
                 }
