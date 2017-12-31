@@ -28,6 +28,9 @@ require_once("../includes/db_connection.php");
         $des = $srow['description'];
     }
 
+?>
+
+<?php
     if(isset($_GET['order'])){
         $order = $_GET['order'];
     }else{
@@ -43,10 +46,10 @@ require_once("../includes/db_connection.php");
     $query = "SELECT * FROM client ORDER BY $order $sort";
     $result = mysqli_query($connection, $query);
     if(!$result) {
-      die("Database query failed." . mysqli_error($connection));
+      die("Database query failed.");
     }
 
-?>
+  ?>
 
 <!DOCTYPE html>
 <html>
@@ -55,7 +58,6 @@ require_once("../includes/db_connection.php");
 	<!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/font-awesome.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../style.css">
 
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
 
@@ -73,8 +75,8 @@ require_once("../includes/db_connection.php");
 
 <div class="col-md-12">
         <div class="offset-1 pt-5 btn-group" style="margin-top: 50px;">
-            <button class="btn btn-default"><a class="offset-1 text-dark" href="../admin/client_form.php" style="text-decoration: none; float: left;"><i class="fa fa-pencil-square-o"> Form</i></a></button>
             <button class="btn btn-default"><a class="text-dark" href="../admin/client_records.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> Record</i></a></button>
+            <button class="btn btn-default"><a class="offset-1 text-dark" href="../admin/client_form.php" style="text-decoration: none; float: left;"><i class="fa fa-pencil-square-o"> Form</i></a></button>
         </div>
     </div>
 
@@ -90,13 +92,13 @@ require_once("../includes/db_connection.php");
                                 <thead>
                                     <tr>
                                         <?php $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC'; ?>
-                                        <th class="text-center"><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
-                                        <th class="text-center"><a href="?order=fname&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organizer</a></th>
-                                        <th class="text-center"><a href="?order=email&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Email</a></th>
-                                        <th class="text-center"><a href="?order=cnum&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Contact</a></th>
-                                        <th class="text-center"><a href="?order=stat&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Status/Position</a></th>
-                                        <th class="text-center"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
-                                        <th class="text-center" width="20%"><a href="" style="text-decoration: none;">Action</a></th>
+                                        <th class="text-center" width="3%"><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
+                                        <th class="text-center" width="15%"><a href="?order=fname&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organizer</a></th>
+                                        <th class="text-center" width="15%"><a href="?order=email&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Email</a></th>
+                                        <th class="text-center" width="12%"><a href="?order=cnum&&sort=<?php echo $sort; ?>" style="text-decoration: none;" >Contact</a></th>
+                                        <th class="text-center" width="22%"><a href="?order=stat&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Status/Position</a></th>
+                                        <th class="text-center" width="23%"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
+                                        <th class="text-center" width="10%"><a href="" style="text-decoration: none;">Action</a></th>
                                     </tr>
                                 </thead>
                                     <tbody class="text-center"> 
@@ -107,13 +109,19 @@ require_once("../includes/db_connection.php");
                                                 $email = $row['email'];
                                                 $cnum = $row['cnum'];
                                                 $stat = $row['stat'];
+                                                $org = $row['org'];
                                         echo "<tr>
                                                 <td>".$id."</td>
                                                 <td>".$fname."</td>  
                                                 <td>".$email."</td> 
                                                 <td>".$cnum."</td>  
                                                 <td>".$stat."</td> 
-                                                <td>".$org."</td> 
+                                                <td><a href=\"\" style=\"text-decoration: none; color: orange;\" >".$org."</a></td> 
+                                                
+                                                <td class=\"\">
+                                                    <a href=\"\" style=\"text-decoration: none; color: green;\" >Edit |</a>
+                                                    <a href=\"\" style=\"text-decoration: none; color: brown;\"> Delete</a>
+                                                </td>
                                             <tr>";
 
                                             }   

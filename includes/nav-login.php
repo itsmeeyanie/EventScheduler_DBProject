@@ -6,7 +6,7 @@
 	              <a class="nav-link text-dark" href="../admin/index.php">Home |</a>
 	            </li>
 	            <li class="nav-item ">
-	              <a class="nav-link text-dark" href="../admin/client_form.php"> Client Records | </a>
+	              <a class="nav-link text-dark" href="../admin/client_records.php"> Client Records | </a>
 	            </li>
 	            <li class="nav-item ">
 	              <a class="nav-link text-dark" href="../admin/logout.php"> Archive </a>

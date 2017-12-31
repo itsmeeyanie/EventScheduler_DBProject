@@ -35,7 +35,7 @@
 		$add = mysqli_real_escape_string($connection, $_POST['add']);
 		$des = mysqli_real_escape_string($connection, $_POST['des']);
 		
-		$query = "INSERT INTO client(fname, email, cnum, stat) values ('{$fname}', '{$email}', '{$cnum}', '{$stat}')";
+		$query = "INSERT INTO client(fname, email, cnum, stat, org) values ('{$fname}', '{$email}', '{$cnum}', '{$stat}', '{$org}')";
 	    $result = mysqli_query($connection, $query);
 	    if($result) {
 	        redirect_to("../admin/client_form.php");
