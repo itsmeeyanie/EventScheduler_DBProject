@@ -65,12 +65,12 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
     }
      
     if ($today == $date) {
-        $week .= '<td class="today"><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #2a7c43;">'.$day;
+        $week .= '<td class="today"><a href="../public/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #2a7c43;">'.$day;
 
     }elseif ($rowcount > 0){
-        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #2a7c43;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 30px;"></span>';
+        $week .= '<td><a href="../public/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #2a7c43;">'.$day.'<span><br><br><i class="fa fa-check-square-o" style="color: #0ad397; font-size: 30px;"></span>';
     } else {
-        $week .= '<td><a href="includes/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #2a7c43;">'.$day;
+        $week .= '<td><a href="../public/event.php?date='.$date.'" style="text-decoration: none; height: 75px; color: #2a7c43;">'.$day;
     }
     $week .= '</a></td>';
      
@@ -117,17 +117,17 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
 <!-- Navigation -->
     <?php
         if (confirm_logged_in()) {
-          include("includes/nav-login.php");
+          include("../includes/nav-login.php");
         }else{
-          include("includes/nav.php");
+          include("../includes/nav.php");
         }
     ?>
 
 
     <div class="col-md-12 pt-5">
         <div class="pt-5 offset-1" style="margin-top: 50px;">
-            <button class="btn btn-default"><a class="offset-1 text-dark" href="public/calendar.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
-            <button class="btn btn-default"><a class="text-dark" href="includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
+            <button class="btn btn-default"><a class="offset-1 text-dark" href="../public/calendar.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
+            <button class="btn btn-default"><a class="text-dark" href="../includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
         </div>
 
         <!-- <div class="col-md-3 p-5 offset-8">

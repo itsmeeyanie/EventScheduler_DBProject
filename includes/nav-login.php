@@ -1,12 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color: #f7f7f7;">
     <a class="navbar-brand text-dark offset-1" href="../admin/index.php">Brand Name</a>
-        <div class="offset-5">
+        <div class="offset-6">
           	<ul class="navbar-nav">
 	            <li class="nav-item active">
 	              <a class="nav-link text-dark" href="../admin/index.php">Home |</a>
-	            </li>
-	            <li class="nav-item ">
-	              <a class="nav-link text-dark" href="#"> Event Details | </a>
 	            </li>
 	            <li class="nav-item ">
 	              <a class="nav-link text-dark" href="#"> Client Records | </a>

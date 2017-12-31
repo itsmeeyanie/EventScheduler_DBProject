@@ -78,7 +78,7 @@
             <div class="panel-group" id="accordion">
                 <div class="panel">
                     <div class="panel-heading p-5" style="background-color: #333b44;">
-                        <span class="col-md-8 offset-5 text-white">Event List</span>
+                        <span class="offset-5 text-white">Event List</span>
                     </div>
                          <div class="panel-body">
                             <div class="table-responsive">
@@ -88,9 +88,10 @@
                                                 <?php $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC'; ?>
                                                 <th class="text-center" width="5%"><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
                                                 <th class="text-center" width="20%"><a href="?order=stime&&sort=<?php echo $sort; ?>" style="text-decoration: none;"><i class="fa fa-clock-o"></i></a></th>
-                                                <th class="text-center" width="35%"><a href="?order=event&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Event</a></th>
+                                                <th class="text-center" width="20%"><a href="?order=event&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Event</a></th>
                                                 <th class="text-center" width="20%"><a href="?order=fname&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organizer</a></th>
                                                 <th class="text-center" width="20%"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
+                                                <th class="text-center" width="15%"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Action</a></th>
                                                 
                                             </tr>
                                         </thead>
@@ -111,9 +112,20 @@
                                                         <td>".$stime ." - " . $etime."</td>  
                                                         <td>".$event."</td> 
                                                         <td>".$fname."</td>  
-                                                        <td>".$org."</td> 
+                                                        <td>".$org."</td> ";
+
+                                                    if (confirm_logged_in()) {
+                                                        echo "<td class=\"text-white\">
+                                                            <a href=\"\" style=\"text-decoration: none; color: teal;\"> View |</a>
+                                                            <a href=\"\" style=\"text-decoration: none; color: green;\" > Edit |</a>
+                                                            <a href=\"\" style=\"text-decoration: none; color: brown;\"> Delete </a>
+                                                            </td>";
+                                                    }else{
+                                                        echo "<td>N/A</td>";
+                                                    }
+                                                                                    
                                                         
-                                                    <tr>";
+                                                   echo "<tr>";
 
                                                 }   
                                         ?>

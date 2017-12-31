@@ -196,8 +196,8 @@
                                                         <td>".$org."</td> ";
                                                      if (confirm_logged_in()) {
                                                         echo "<td class=\"text-white\">
-                                                            <a href=\"../includes/view.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-primary\" type=\"button\" style=\"text-decoration: none;\">View</a>
-                                                            <a href=\"../includes/edit.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-success\" type=\"button\" style=\"text-decoration: none;\" >Edit</a>
+                                                            <a href=\"../public/view.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-primary\" type=\"button\" style=\"text-decoration: none;\">View</a>
+                                                            <a href=\"../public/edit.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-success\" type=\"button\" style=\"text-decoration: none;\" >Edit</a>
                                                             <a href=\"?idnum=$id&date=$ddate\" class=\"btn btn-circle btn-danger\" type=\"button\" style=\"text-decoration: none;\" name=\"delete\">Delete</a>
                                                             </td>";
                                                     }else{

@@ -1,5 +1,7 @@
 <?php
-    require_once('../includes/db_connection.php');
+    include("../includes/session.php");
+    require_once("../includes/db_connection.php");
+    include("../includes/function.php");
 
     if(isset($_GET['date'])){
         $ddate = $_GET['date'];
@@ -62,13 +64,26 @@
 </head>
 <body>
 
-    <div class="container navbar-default p-5" style="margin-top: 30px;">
-        <h5>
-            <a class="offset-1" href="../calendar.php" style="text-decoration: none; float: left; font-size: 20px; color: teal;"><i class="fa fa-calendar"> CALENDAR</i></a>
-        </h5>
-        <div class="col-md-3 offset-2" style="float: right;">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#popUpWindow"><i class="fa fa-plus-circle"> Add Event</i></button>
-        </div>
+    <!-- Navigation -->
+    <?php
+        if (confirm_logged_in()) {
+          include("../includes/nav-login.php");
+        }else{
+          include("../includes/nav.php");
+        }
+    ?>
+
+    <div class="container p-5" style="margin-top: 70px;">
+        
+        
+
+        <?php
+        if (confirm_logged_in()) {
+          echo "<div class=\"col-md-3 offset-2\" style=\"float: right;\">
+            <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#popUpWindow\"><i class=\"fa fa-plus-circle\"> Add Event</i></button>
+        </div>";
+        }
+    ?>
 
 
         <!-- Add Event Modal -->
@@ -155,6 +170,8 @@
                                                 <th class="text-center" width="28%"><a href="?date=<?php echo $ddate; ?>&&order=event&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Event</a></th>
                                                 <th class="text-center" width="15"><a href="?date=<?php echo $ddate; ?>&&order=fname&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organizer</a></th>
                                                 <th class="text-center" width="15%"><a href="?date=<?php echo $ddate; ?>&&order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
+
+
                                                 <th class="text-center" width="20%"><a href="" style="text-decoration: none;">Action</a></th>
                                                 
                                             </tr>
@@ -170,20 +187,25 @@
                                                     $date = $row['rdate'];
                                                     $stime = $row['stime'];
                                                     $etime = $row['etime'];
-                                                    
+       
                                                     echo "<tr>
                                                         <td>".$id."</td>
                                                         <td>".$stime ." - " . $etime."</td>  
                                                         <td>".$event."</td> 
                                                         <td>".$fname."</td>  
-                                                        <td>".$org."</td> 
-                                                        <td class=\"text-white\">
+                                                        <td>".$org."</td> ";
+                                                     if (confirm_logged_in()) {
+                                                        echo "<td class=\"text-white\">
                                                             <a href=\"../includes/view.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-primary\" type=\"button\" style=\"text-decoration: none;\">View</a>
-                                                            <a href=\"../includes/edit.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-success\" type=\"button\" style=\"text-decoration: none;\" >Edit</a>
+                                                            <a href=\"../public/edit.php?id=$id&date=$ddate\" class=\"btn btn-circle btn-success\" type=\"button\" style=\"text-decoration: none;\" >Edit</a>
                                                             <a href=\"?idnum=$id&date=$ddate\" class=\"btn btn-circle btn-danger\" type=\"button\" style=\"text-decoration: none;\" name=\"delete\">Delete</a>
-                                                    </td>   
+                                                            </td>";
+                                                    }else{
+                                                        echo "<td>N/A</td>";
+                                                    }
+                                                                                    
                                                         
-                                                    <tr>";
+                                                   echo "<tr>";
 
                                                 }   
                                         ?>
