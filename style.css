@@ -26,6 +26,13 @@ div {
     background-color: ;
 }
 
+.wrapper {
+    background-color: #353c47;
+    height: 900px;
+    width: auto;
+    margin-top: -20px;
+}
+
 .today {
     background-color: #dddcc1;
 }
@@ -84,3 +91,4 @@ input[type=submit]:hover {
 a:hover {
     mix-blend-mode: hard-light;
 }
+

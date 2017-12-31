@@ -1,5 +1,7 @@
 <?php
-  require_once('../includes/db_connection.php');
+    include("../includes/session.php");
+    require_once("../includes/db_connection.php");
+    include("../includes/function.php");
 
     $query = "SELECT * FROM tbl_event";
     $result = mysqli_query($connection, $query);
@@ -46,12 +48,31 @@
 
 </head>
 <body>
-  <div class="container navbar-default p-5" style="margin-top: 30px;">
-        <h5>
-            <a class="offset-1 text-dark" href="../calendar.php" style="text-decoration: none; float: left; font-size: 18px;"><i class="fa fa-calendar"> Calendar View</i></a>
-        </h5>
+<!-- Navigation -->
+    <?php
+        if (confirm_logged_in()) {
+          include("../includes/nav-login.php");
+        }else{
+          include("../includes/nav.php");
+        }
+    ?>
 
-    
+
+    <div class="col-md-12 pt-5">
+        <div class="pt-5 offset-1" style="margin-top: 50px;">
+            <button class="btn btn-default"><a class="offset-1 text-dark" href="../public/calendar.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
+            <button class="btn btn-default"><a class="text-dark" href="../includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
+        </div>
+
+        <!-- <div class="col-md-3 p-5 offset-8">
+            <form class=" pt-5" method="post">
+            <input name="det" type="month" value="<?php echo $ym; ?>">
+            <button class="btn btn-default" name="search">Filter</button>
+            </form>
+        </div> -->
+    </div>
+  <div class="container">
+
     <div class="col-md-12">
         <div class="panel-body">
             <div class="panel-group" id="accordion">
