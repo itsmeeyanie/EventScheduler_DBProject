@@ -15,6 +15,16 @@ if (isset($_GET['ym'])) {
     $ym = date('Y-m');
 }
 
+if(isset($_POST['filter'])){
+    $ym = $_POST['det'];
+}else{
+    if (isset($_GET['ym'])) {
+        $ym = $_GET['ym'];
+    } else {
+        // This month
+        $ym = date('Y-m');
+    }
+}
  
 // Check format
 $timestamp = strtotime($ym . '-01');
@@ -126,6 +136,13 @@ for ( $day = 1; $day <= $day_count; $day++, $str++) {
         <div class="offset-1 pt-5 btn-group" style="margin-top: 50px;">
             <button class="btn btn-default"><a class="offset-1 text-dark" href="../public/calendar.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
             <button class="btn btn-default"><a class="text-dark" href="../includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
+        </div>
+
+        <div class="col-md-3 p-2" style="float: right; margin-top: 80px;">
+            <form action="../admin/index.php" method="post">
+                <input name="det" type="month" value="<?php echo $ym; ?>">
+                <button class="btn btn-default" name="filter">Filter</button>
+            </form>
         </div>
     </div>
 

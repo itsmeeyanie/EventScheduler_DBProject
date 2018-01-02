@@ -26,6 +26,25 @@
 			}
 	}
 
+ 
+    if(isset($_POST['search'])){
+        $val = mysqli_real_escape_string($connection, $_POST['valueToSearch']);
+       
+        $query = "SELECT * FROM tbl_event WHERE CONCAT('id', 'stime', 'etime', 'event', 'fname', 'org') LIKE'%".$val."%'";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }
+    }else{
+        $query = "SELECT * FROM tbl_event";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }
+    }
+
+  
+
 	if(isset($_POST['addclient'])) { 
 		$fname = mysqli_real_escape_string($connection, $_POST['fname']);
 		$email = mysqli_real_escape_string($connection, $_POST['email']);

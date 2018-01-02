@@ -5,23 +5,23 @@ include("../includes/function.php");
 require_once("../includes/db_connection.php");
 
 
-    $qu = "SELECT * FROM client";
-    $res = mysqli_query($connection, $qu);
-    if(!$res) {
+    $query = "SELECT * FROM client";
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
       die("Database query failed.");
     }else{
-      $rowcount=mysqli_num_rows($res);
+      $rowcount=mysqli_num_rows($result);
     }
 
-    $squery = "SELECT * FROM organization";
-    $sresult = mysqli_query($connection, $squery);
-    if(!$sresult) {
+    $query = "SELECT * FROM organization";
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
       die("Database query failed.");
     }else{
-      $srowcount=mysqli_num_rows($sresult);
+      $rowcount=mysqli_num_rows($result);
     }
 
-    while($srow=mysqli_fetch_assoc($sresult)){
+    while($srow=mysqli_fetch_assoc($result)){
         $sid = $srow['id'];
         $org = $srow['org'];
         $ad = $srow['ad'];
@@ -105,7 +105,7 @@ require_once("../includes/db_connection.php");
                                 </thead>
                                     <tbody class="text-center"> 
                                         <?php
-                                            while($row=mysqli_fetch_assoc($res)){
+                                            while($row=mysqli_fetch_assoc($result)){
                                                 $id = $row['id'];
                                                 $fname = $row['fname'];
                                                 $email = $row['email'];

@@ -3,26 +3,13 @@ include("../includes/session.php");
 include("../includes/function.php"); 
 
 require_once("../includes/db_connection.php");
-    if(isset($_GET['id'])){
-        $data = $_GET['id'];
-    }
 
-    if(isset($_GET['org'])){
-        $or= $_GET['org'];
-    }
-
-    $query = "SELECT * FROM organization where id=$data or org='$or'";
-    $sresult = mysqli_query($connection, $query);
-    if(!$sresult) {
+    $query = "SELECT * FROM organization";
+    $result = mysqli_query($connection, $query);
+    if(!$result) {
       die("Database query failed.");
-    }else{
-      $srowcount=mysqli_num_rows($sresult);
     }
 
-?>
-
-
-<?php
     if(isset($_GET['order'])){
         $order = $_GET['order'];
     }else{
@@ -87,14 +74,14 @@ require_once("../includes/db_connection.php");
                                         <?php $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC'; ?>
                                         <th class="text-center" width="5%"><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
                                         <th class="text-center" width="25%"><a href="?order=org&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organization</a></th>
-                                        <th class="text-center" width="30%"><a href="?order=des&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Description</a></th>
+                                        <th class="text-center" width="30%"><a href="?order=description&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Description</a></th>
                                         <th class="text-center" width="30%"><a href="?order=ad&&sort=<?php echo $sort; ?>" style="text-decoration: none;" >Address</a></th>
                                         <th class="text-center" width="10%"><a href="" style="text-decoration: none;">Action</a></th>
                                     </tr>
                                 </thead>
                                     <tbody class="text-center"> 
                                         <?php
-                                            while($row=mysqli_fetch_assoc($sresult)){
+                                            while($row=mysqli_fetch_assoc($result)){
                                                 $id = $row['id'];
                                                 $org = $row['org'];
                                                 $ad = $row['ad'];

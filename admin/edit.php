@@ -82,7 +82,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    <a href="#" onclick="history.go(-1)"><button class="btn btn-danger col-md-2">Cancel</button> 
+                                    <a type="button" class="btn btn-danger col-md-2" href="../includes/eventlist.php" value="Cancel">Cancel</a>
 
                                     <button type="submit" name="edit" value="Submit" class="btn btn-success col-md-6 offset-1">
                                         Save
