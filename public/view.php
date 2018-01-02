@@ -12,21 +12,27 @@
     $date = date_create($ddate);
 
     //"SELECT * from tbl_event WHERE id=".$data
-    $query = "call viewDataById('$data')";
+    $query = "SELECT * from tbl_event left join client on (tbl_event.o_id = client.id) left join organization on (tbl_event.o_id = organization.id) WHERE eid=$data";
+
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed.");
     }
 
     while($row=mysqli_fetch_assoc($result)){
-        $id = $row['id'];
+        $id = $row['eid'];
         $event = $row['event'];
         $fname = $row['fname'];
         $org = $row['org'];
-        $cnum = $row['cnum'];
+        $o_id = $row['o_id'];
         $rdate = $row['rdate'];
         $stime = $row['stime'];
         $etime = $row['etime'];
+        $email = $row['email'];
+        $cnum = $row['cnum'];
+        $stat = $row['stat'];
+        $ad = $row['ad'];
+        $description = $row['description'];
     }
 ?>
 
@@ -71,46 +77,44 @@
                         <div class="form-group">
                             <div class="col-md-8">
 
+                                <h5 style="color: brown;"><b>Event Details</b></h5>
                                 <label>Date: </label>
                                 <span class="offset-2 p-4" style="color: teal;"><strong><?php echo date_format($date, "F d, Y"); ?></strong></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
+                                <br>
 
                                 <label>Event: </label>
                                 <span class="offset-2 p-4" style="color: teal;"><strong><?php echo $event; ?></strong></span>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <label>Name: </label>
-                                <span class="offset-2 p-4" style="color: teal;"><strong><?php echo $fname; ?></strong></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <label>Organization: </label>
-                                <span class="offset-1" style="color: teal;"><strong><?php echo $org ?></strong></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <label>Contact: </label>
-                                <span class="offset-1 p-5" style="color: teal;"><strong><?php echo $cnum; ?></strong></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">
+                            <br>
                                 <label>Start: </label>
                                 <span class="offset-2 p-5" style="color: teal;"><strong><?php echo $stime; ?></strong></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-8">                
+                         <br>               
                                 <label>End: </label>
                                 <span class="offset-2 p-5" style="color: teal;"><strong><?php echo $etime; ?></strong></span>
+
+                                <br>
+                                <h5 style="color: brown;"><b>Contact Details</b></h5>
+                                <label>Name: </label>
+                                <span class="offset-2 p-4" style="color: teal;"><strong><?php echo $fname; ?></strong></span>
+                                <br>
+                                <label>Status: </label>
+                                <span class="offset-2 p-5" style="color: teal;"><strong><?php echo $stat; ?></strong></span>
+                                <br>
+                                <label>Email: </label>
+                                <span class="offset-2 p-5" style="color: teal;"><strong><?php echo $email; ?></strong></span>
+                         <br>               
+                                <label>Contact Number: </label>
+                                <span class="offset-1 " style="color: teal;"><strong><?php echo $cnum; ?></strong></span>
+                            <br>
+                                <h5 style="color: brown;"><b>Organization</b></h5>
+                                <label>Organization: </label>
+                                <span class="offset-1" style="color: teal;"><strong><?php echo $org; ?></strong></span>
+                                <br>
+                                <label>Address: </label>
+                                <span class="offset-1" style="color: teal;"><strong><?php echo $ad; ?></strong></span>
+                                <br>
+                                <label>Description: </label>
+                                <span class="offset-1" style="color: teal;"><strong><?php echo $description; ?></strong></span>
                             </div>
                         </div>
                     </form>

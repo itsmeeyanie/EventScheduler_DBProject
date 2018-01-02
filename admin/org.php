@@ -4,11 +4,16 @@ include("../includes/function.php");
 
 require_once("../includes/db_connection.php");
 
+    // if (isset($_GET['idd'])) {
+    //     $idd = $_GET['idd'];
+    // }
+
     $query = "SELECT * FROM organization";
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed.");
     }
+
 
     if(isset($_GET['order'])){
         $order = $_GET['order'];
@@ -92,7 +97,7 @@ require_once("../includes/db_connection.php");
                                                 <td>".$des."</td>   
                                                 <td>".$ad."</td> 
                                                 <td class=\"\">
-                                                    <a href=\"\" style=\"text-decoration: none; color: green;\" >Edit |</a>
+                                                    <a href=\"../admin/edit_org.php?idd=$id\" style=\"text-decoration: none; color: green;\" >Edit |</a>
                                                     <a href=\"../includes/config.php?idnu=$id\" style=\"text-decoration: none; color: brown;\"> Delete</a>
                                                 </td>
                                             <tr>";

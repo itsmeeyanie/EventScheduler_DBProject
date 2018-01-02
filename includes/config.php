@@ -15,7 +15,7 @@
 				$logged_in_user = mysqli_fetch_assoc($results);
 				if ($logged_in_user['user_type'] == 'admin') {
 					$_SESSION['user'] = $logged_in_user;
-					redirect_to("../admin/index.php");		  
+					redirect_to("../admin/client_records.php");		  
 				}else{
 					$_SESSION['user'] = $logged_in_user;
 					$_SESSION['success']  = "You are now logged in";
@@ -25,25 +25,6 @@
 				echo "<script type='text/javascript'> alert('Wrong username/password combination')</script>";
 			}
 	}
-
- 
-    if(isset($_POST['search'])){
-        $val = mysqli_real_escape_string($connection, $_POST['valueToSearch']);
-       
-        $query = "SELECT * FROM tbl_event WHERE CONCAT('id', 'stime', 'etime', 'event', 'fname', 'org') LIKE'%".$val."%'";
-        $result = mysqli_query($connection, $query);
-        if(!$result) {
-          die("Database query failed.");
-        }
-    }else{
-        $query = "SELECT * FROM tbl_event";
-        $result = mysqli_query($connection, $query);
-        if(!$result) {
-          die("Database query failed.");
-        }
-    }
-
-  
 
 	if(isset($_POST['addclient'])) { 
 		$fname = mysqli_real_escape_string($connection, $_POST['fname']);
@@ -66,13 +47,12 @@
 	    $sresult = mysqli_query($connection, $squery);
 	    if($sresult) {
 	    	redirect_to("../admin/client_form.php");
-	    	echo "lol";
 	    }else{
 	        die("Database query failed. " . mysqli_error($connection));
 	    }
 	}
 
-	    if(isset($_POST['edit']) ) { 
+	if(isset($_POST['edit']) ) { 
         $id = mysqli_real_escape_string($connection, $_GET['id']);
         $event = mysqli_real_escape_string($connection, $_POST['event']);
         $stime = mysqli_real_escape_string($connection, $_POST['stime']);
@@ -80,7 +60,7 @@
 
 
 
-        $query = "UPDATE tbl_event SET event='$event', stime='$stime', etime='$etime' WHERE id='$id'";
+        $query = "UPDATE tbl_event SET event='$event', stime='$stime', etime='$etime' WHERE eid='$id'";
         $result = mysqli_query($connection, $query);
 
         if($result) {
@@ -92,9 +72,29 @@
         }
     }
 
+    if(isset($_POST['edit_org']) ) { 
+        $id = mysqli_real_escape_string($connection, $_GET['id']);
+        $org = mysqli_real_escape_string($connection, $_POST['org']);
+        $ad = mysqli_real_escape_string($connection, $_POST['ad']);
+        $des = mysqli_real_escape_string($connection, $_POST['des']);
+
+
+
+        $query = "UPDATE organization SET org='$org', ad='$ad', description='$des' WHERE id='$id'";
+        $result = mysqli_query($connection, $query);
+
+        if($result) {
+          echo "<script type='text/javascript'> alert('success!')</script>";
+          echo("<meta http-equiv='refresh' content='1'>");
+          redirect_to("../admin/org.php?id=$id");
+        }else{
+          die("Database query failed. " . mysqli_error($connection));
+        }
+    }
+
     if(isset($_GET['idnum'])) { 
                 $id = mysqli_real_escape_string($connection, $_GET['idnum']);
-                $query = "DELETE FROM tbl_event WHERE id=".$id;
+                $query = "DELETE FROM tbl_event WHERE eid=".$id;
                 $result = mysqli_query($connection, $query);
                 if($result) {
                     redirect_to("../includes/eventlist.php");

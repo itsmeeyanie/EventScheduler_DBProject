@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color: #f7f7f7;">
-    <a class="navbar-brand text-dark offset-1" href="../admin/index.php">Brand Name</a>
+    <a class="navbar-brand text-dark offset-1" href="../admin/client_records.php">Brand Name</a>
         <div class="offset-6">
           	<ul class="navbar-nav">
 	            <li class="nav-item active">
-	              <a class="nav-link text-dark" href="../admin/index.php">Home |</a>
+	              <a class="nav-link text-dark" href="../admin/client_records.php">Home |</a>
 	            </li>
 	            <li class="nav-item ">
-	              <a class="nav-link text-dark" href="../admin/client_records.php"> Client Records | </a>
+	              <a class="nav-link text-dark" href="../admin/index.php"> Calendar | </a>
 	            </li>
 	            <li class="nav-item ">
 	              <a class="nav-link text-dark" href="../admin/logout.php"> Archive </a>
@@ -29,3 +29,5 @@
 			</ul>
 	    </div>
   </nav>
+
+  

@@ -5,29 +5,6 @@ include("../includes/function.php");
 require_once("../includes/db_connection.php");
 
 
-    $query = "SELECT * FROM client";
-    $result = mysqli_query($connection, $query);
-    if(!$result) {
-      die("Database query failed.");
-    }else{
-      $rowcount=mysqli_num_rows($result);
-    }
-
-    $query = "SELECT * FROM organization";
-    $result = mysqli_query($connection, $query);
-    if(!$result) {
-      die("Database query failed.");
-    }else{
-      $rowcount=mysqli_num_rows($result);
-    }
-
-    while($srow=mysqli_fetch_assoc($result)){
-        $sid = $srow['id'];
-        $org = $srow['org'];
-        $ad = $srow['ad'];
-        $des = $srow['description'];
-    }
-
 
     if(isset($_GET['order'])){
         $order = $_GET['order'];
@@ -40,15 +17,65 @@ require_once("../includes/db_connection.php");
     }else{
         $sort = 'ASC';
     }
-?>
-<?php
+
     $query = "SELECT * FROM client ORDER BY $order $sort";
     $result = mysqli_query($connection, $query);
     if(!$result) {
       die("Database query failed."  . mysqli_error($connection));
     }
 
-  ?>
+?>
+
+<?php
+
+    if(isset($_POST['search'])){
+        if(isset($_GET['toSearch'])){
+            $toSearch = $_GET['toSearch'];
+        }else{
+            $toSearch = 'fname';
+        }
+
+        $val = mysqli_real_escape_string($connection, $_POST['val']);
+        
+        $query = "SELECT * FROM client WHERE $toSearch regexp '$val'";
+
+
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }else{
+          $rowcount=mysqli_num_rows($result);
+        }
+
+
+    }else{
+        $query = "SELECT * FROM client";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }else{
+          $rowcount=mysqli_num_rows($result);
+        }
+
+        if(isset($_GET['order'])){
+            $order = $_GET['order'];
+        }else{
+            $order = 'id';
+        }
+
+        if(isset($_GET['sort'])){
+            $sort = $_GET['sort'];
+        }else{
+            $sort = 'ASC';
+        }
+        }
+
+        $query = "SELECT * FROM client ORDER BY $order $sort";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed."  . mysqli_error($connection));
+        }
+?>
 
 
 
@@ -58,9 +85,12 @@ require_once("../includes/db_connection.php");
 	<title>Event Calendar</title>
 	<!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
 
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet" />
 
 
 </head>
@@ -74,10 +104,32 @@ require_once("../includes/db_connection.php");
         }
     ?>
 
-<div class="col-md-12">
+    <div class="col-md-12">
         <div class="offset-1 pt-5 btn-group" style="margin-top: 50px;">
             <button class="btn btn-default"><a class="text-dark" href="../admin/client_records.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> Record</i></a></button>
             <button class="btn btn-default"><a class="offset-1 text-dark" href="../admin/client_form.php" style="text-decoration: none; float: left;"><i class="fa fa-pencil-square-o"> Form</i></a></button>
+        </div>
+        <div >
+            <div class="" style="float: right; margin-right: 135px; margin-top: -25px;">
+                <form action="../admin/client_records.php?toSearch=org" method="POST">
+                    <input name="val" placeholder="Search by Organization">
+                    <input type="hidden" name="search">
+                </form>
+            </div>
+
+            <div class="" style="float: right;  margin-top: -25px;">
+                <form action="../admin/client_records.php?toSearch=stat" method="POST">
+                    <input name="val" placeholder="Search by Status">
+                    <input type="hidden" name="search"> 
+                </form>
+            </div>
+
+            <div class="" style="float: right;  margin-top: -25px;">
+                <form action="../admin/client_records.php?toSearch=fname" method="POST">
+                    <input name="val" placeholder="Search by Name">
+                    <input type="hidden" name="search"> 
+                </form>
+            </div>
         </div>
     </div>
 
@@ -118,10 +170,10 @@ require_once("../includes/db_connection.php");
                                                 <td>".$email."</td> 
                                                 <td>".$cnum."</td>  
                                                 <td>".$stat."</td> 
-                                                <td><a href=\"../admin/org.php?id=$id&&org=$org\" style=\"text-decoration: none; color: orange;\" >".$org."</a></td> 
+                                                <td><a href=\"../admin/org.php?idd=$id\" style=\"text-decoration: none; color: orange;\" >".$org."</a></td> 
                                                 
                                                 <td class=\"\">
-                                                    <a href=\"\" style=\"text-decoration: none; color: green;\" >Edit |</a>
+                                                    <a href=\"../admin/client_edit.php?id=$id\" style=\"text-decoration: none; color: green;\" >Edit |</a>
                                                     <a href=\"../includes/config.php?idn=$id\" style=\"text-decoration: none; color: brown;\"> Delete</a>
                                                 </td>
                                             <tr>";

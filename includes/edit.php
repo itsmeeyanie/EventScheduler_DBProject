@@ -17,11 +17,11 @@
     }
 
     while($row=mysqli_fetch_assoc($result)){
-        $id = $row['id'];
+        $id = $row['eid'];
         $event = $row['event'];
         $fname = $row['fname'];
         $org = $row['org'];
-        $cnum = $row['cnum'];
+        $o_id = $row['o_id'];
         $rdate = $row['rdate'];
         $stime = $row['stime'];
         $etime = $row['etime'];

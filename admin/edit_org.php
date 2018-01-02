@@ -1,27 +1,23 @@
 <?php
     require_once('../includes/db_connection.php');
 
-    if(isset($_GET['id'])){
-        $data = $_GET['id'];
+    if(isset($_GET['idd'])){
+        $data = $_GET['idd'];
     }
 
-    $query = "SELECT * from tbl_event WHERE eid=$data";
+    //"SELECT * from tbl_event WHERE id=".$data
+    $query = "SELECT * from organization WHERE id=$data";
     $result = mysqli_query($connection, $query);
     if(!$result) {
-      die("Database query failed." . mysqli_error($connection));
+      die("Database query failed.");
     }
 
     while($row=mysqli_fetch_assoc($result)){
-        $id = $row['eid']; 
-        $event = $row['event'];
-        $fname = $row['fname'];
+        $id = $row['id'];
         $org = $row['org'];
-        $o_id = $row['o_id'];
-        $rdate = $row['rdate'];
-        $stime = $row['stime'];
-        $etime = $row['etime'];
+        $ad = $row['ad'];
+        $des = $row['description'];
     }
-    $date = date_create($rdate);
 ?>
 
 
@@ -59,31 +55,24 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                  <input class="form-control" value="<?php echo date_format($date, "F d, Y"); ?>" readonly>
+                                  <input class="form-control" name="org" value="<?php echo $org; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <input name="event" type="" class="form-control" placeholder="Event" value="<?php echo $event; ?>" required="">
+                                    <input name="ad" type="" class="form-control" value="<?php echo $ad; ?>" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <label>Start</label>
-                                    <input name="stime" type="time" class="form-control" placeholder="Start" value="<?php echo $stime; ?>" required="">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <label>End</label>
-                                    <input name="etime" type="time" class="form-control" placeholder="End" value="<?php echo $etime; ?>" required="">
+                                    <input name="des" type="text" class="form-control" value="<?php echo $des; ?>" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    <a type="button" class="btn btn-danger col-md-2" href="../includes/eventlist.php" value="Cancel">Cancel</a>
+                                    <a type="button" class="btn btn-danger col-md-2" href="../admin/org.php" value="Cancel">Cancel</a>
 
-                                    <button type="submit" name="edit" value="Submit" class="btn btn-success col-md-6 offset-1">
+                                    <button type="submit" name="edit_org" value="Submit" class="btn btn-success col-md-6 offset-1">
                                         Save
                                     </button>
                                 </div>

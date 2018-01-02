@@ -15,7 +15,7 @@
     if(isset($_GET['order'])){
         $order = $_GET['order'];
     }else{
-        $order = 'id';
+        $order = 'eid';
     }
 
     if(isset($_GET['sort'])){
@@ -53,6 +53,19 @@
         }
 
 
+    }elseif(isset($_POST['filter'])){
+        $dateFrom = mysqli_real_escape_string($connection, $_POST['dateFrom']);
+        $dateTo = mysqli_real_escape_string($connection, $_POST['dateTo']);
+
+        $query = "SELECT * FROM tbl_event WHERE rdate BETWEEN '$dateFrom' and '$dateTo'";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }else{
+          $rowcount=mysqli_num_rows($result);
+        }
+
+
     }else{
         $query = "SELECT * FROM tbl_event";
         $result = mysqli_query($connection, $query);
@@ -65,7 +78,7 @@
         if(isset($_GET['order'])){
             $order = $_GET['order'];
         }else{
-            $order = 'id';
+            $order = 'eid';
         }
 
         if(isset($_GET['sort'])){
@@ -80,20 +93,23 @@
           die("Database query failed.");
         }
     }
-  ?>
+?>
 
 
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Function here</title>
+    <title>Event</title>
 
     <!-- Bootstrap core CSS -->
-     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-   <link href="../assets/css/bootstrap.css" rel="stylesheet" /> 
+    <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+     <!-- FontAwesome Styles-->
+    <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom Styles-->
+    <link href="../assets/css/custom-styles.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -106,11 +122,19 @@
         }
     ?>
 
-    <div class="offset-7" style="margin-top: 100px;">
-        <form action="../includes/eventlist.php?toSearch=org" method="POST">
+
+        <div class="offset-1 btn-group pt-5" style="margin-top: 50px;">
+            <button class="btn btn-default"><a class="offset-1 text-dark" href="../admin/index.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
+            <button class="btn btn-default"><a class="text-dark" href="../includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
+
+        </div>
+
+        
+    <div class="offset-7" style="margin-top: -35px;">
+        <form action="../includes/eventlist.php" method="POST">
             <input type="date" name="dateFrom" placeholder="Date from">
             <input type="date" name="dateTo" placeholder="Date to">
-            <input class="btn btn-secondary" type="submit" name="search"> 
+            <input class="btn btn-secondary" type="submit" value="Search" name="filter"> 
         </form>
     </div>
 
@@ -133,13 +157,18 @@
                 <input type="hidden" name="search">
             </form>
         </div>
-        <div class="offset-1 btn-group pt-5" style="">
-            <button class="btn btn-default"><a class="offset-1 text-dark" href="../admin/index.php" style="text-decoration: none; float: left;"><i class="fa fa-calendar"> Calendar View</i></a></button>
-            <button class="btn btn-default"><a class="text-dark" href="../includes/eventlist.php" style="text-decoration: none; float: left; margin-left: 20px;"><i class="fa fa-table"> List View</i></a></button>
-            
-        </div>
-        
+
+
+
+    <?php
+        if (confirm_logged_in()) {
+          echo "<div class=\"col-md-3 offset-1 pt-5 px-5\">
+            <a href=\"../admin/add_event.php\" class=\"btn btn-primary text-white\"><i class=\"fa fa-plus-circle\"> Add Event</i></a>
+        </div>";
+        }
+    ?>
     </div>
+
   <div class="container">
 
     <div class="col-md-12">
@@ -156,7 +185,7 @@
                                             <tr>
 
                                                 <?php $sort == 'DESC' ? $sort = 'ASC' : $sort = 'DESC'; ?>
-                                                <th class="text-center" ><a href="?order=id&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
+                                                <th class="text-center" ><a href="?order=eid&&sort=<?php echo $sort; ?>" style="text-decoration: none;">#</a></th>
                                                 <th class="text-center" ><a href="?order=stime&&sort=<?php echo $sort; ?>" style="text-decoration: none;"><i class="fa fa-clock-o"></i></a></th>
                                                 <th class="text-center" ><a href="?order=event&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Event</a></th>
                                                 <th class="text-center" ><a href="?order=fname&&sort=<?php echo $sort; ?>" style="text-decoration: none;">Organizer</a></th>
@@ -168,11 +197,11 @@
                                         <tbody class="text-center"> 
                                             <?php
                                                 while($row=mysqli_fetch_assoc($result)){
-                                                    $id = $row['id'];
+                                                    $id = $row['eid'];
                                                     $event = $row['event'];
                                                     $fname = $row['fname'];
                                                     $org = $row['org'];
-                                                    $cnum = $row['cnum'];
+                                                    $o_id = $row['o_id'];
                                                     $date = $row['rdate'];
                                                     $stime = $row['stime'];
                                                     $etime = $row['etime'];

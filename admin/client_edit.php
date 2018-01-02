@@ -1,27 +1,26 @@
 <?php
     require_once('../includes/db_connection.php');
+    include("../includes/function.php");
 
     if(isset($_GET['id'])){
         $data = $_GET['id'];
     }
 
-    $query = "SELECT * from tbl_event WHERE eid=$data";
+    //"SELECT * from tbl_event WHERE id=".$data
+    $query = "SELECT * from client WHERE id=$data";
     $result = mysqli_query($connection, $query);
     if(!$result) {
-      die("Database query failed." . mysqli_error($connection));
+      die("Database query failed.");
     }
 
     while($row=mysqli_fetch_assoc($result)){
-        $id = $row['eid']; 
-        $event = $row['event'];
+        $id = $row['id'];
         $fname = $row['fname'];
+        $email = $row['email'];
+        $cnum = $row['cnum'];
+        $status = $row['stat'];
         $org = $row['org'];
-        $o_id = $row['o_id'];
-        $rdate = $row['rdate'];
-        $stime = $row['stime'];
-        $etime = $row['etime'];
     }
-    $date = date_create($rdate);
 ?>
 
 
@@ -48,10 +47,10 @@
                 <div class="panel-group" id="accordion">
                     <div class="panel">
                         <div class="panel-heading p-3" style="background-color: #333b44;">
-                            <p class="offset-5 text-white">Edit Event</p>
+                            <p class="offset-5 text-white">Edit Details</p>
                         </div>
                     
-                    <form class="form-horizontal p-5 offset-2" action="../includes/config.php?id=<?php echo $id; ?>" method="post">
+                    <form class="form-horizontal p-5 offset-2" method="post">
                             <div class="form-group">
                                 <div class="col-md-8">
                                   <input name="id" class="form-control" value="<?php echo $id; ?>" readonly>
@@ -59,31 +58,34 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                  <input class="form-control" value="<?php echo date_format($date, "F d, Y"); ?>" readonly>
+                                  <input name="fname" class="form-control" value="<?php echo $fname; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <input name="event" type="" class="form-control" placeholder="Event" value="<?php echo $event; ?>" required="">
+                                    <input name="email" type="" class="form-control" value="<?php echo $email; ?>" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <label>Start</label>
-                                    <input name="stime" type="time" class="form-control" placeholder="Start" value="<?php echo $stime; ?>" required="">
+                                  <input name="cnum" class="form-control" value="<?php echo $cnum; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-8">
-                                    <label>End</label>
-                                    <input name="etime" type="time" class="form-control" placeholder="End" value="<?php echo $etime; ?>" required="">
+                                    <input name="stat" type="" class="form-control" value="<?php echo $status; ?>" required="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <input name="org" type="" class="form-control" value="<?php echo $org; ?>" required="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-10">
-                                    <a type="button" class="btn btn-danger col-md-2" href="../includes/eventlist.php" value="Cancel">Cancel</a>
+                                    <a type="button" class="btn btn-danger col-md-2 text-white" onclick="history.go(-1)" value="Cancel">Cancel</a>
 
-                                    <button type="submit" name="edit" value="Submit" class="btn btn-success col-md-6 offset-1">
+                                    <button type="submit" name="update" value="Submit" class="btn btn-success col-md-6 offset-1">
                                         Save
                                     </button>
                                 </div>
@@ -100,6 +102,28 @@
 
 <?php
   mysqli_free_result($result);
+?>
+
+<?php 
+    if(isset($_POST['update']) ) { 
+        $id = mysqli_real_escape_string($connection, $_GET['id']);
+        $fname = mysqli_real_escape_string($connection, $_POST['fname']);
+        $email = mysqli_real_escape_string($connection, $_POST['email']);
+        $cnum = mysqli_real_escape_string($connection, $_POST['cnum']);
+        $stat = mysqli_real_escape_string($connection, $_POST['stat']);
+        $org = mysqli_real_escape_string($connection, $_POST['org']);
+
+
+        $query = "UPDATE client SET fname='$fname', email='$email', cnum='$cnum', stat='$stat', org='$org' WHERE id='$id'";
+        $result = mysqli_query($connection, $query);
+
+        if($result) {
+          echo "<script type='text/javascript'> alert('success!')</script>";
+          redirect_to("../admin/client_records.php?id=$id");
+        }else{
+          die("Database query failed. " . mysqli_error($connection));
+        }
+    }
 ?>
 
 <?php
