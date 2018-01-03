@@ -1,3 +1,5 @@
+<link href="../assets/css/bootstrap.css" rel="stylesheet" />
+
 <nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color: #f7f7f7;">
     <a class="navbar-brand text-dark offset-1" href="../admin/client_records.php">Brand Name</a>
         <div class="offset-6">
@@ -9,7 +11,7 @@
 	              <a class="nav-link text-dark" href="../admin/index.php"> Calendar | </a>
 	            </li>
 	            <li class="nav-item ">
-	              <a class="nav-link text-dark" href="../admin/logout.php"> Archive </a>
+	              <a class="nav-link text-dark" href="../admin/archive.php"> Archive </a>
 	            </li>
 				<li class="nav-item p-2">
 					<div class="dropdown">
@@ -17,11 +19,9 @@
 			              <button type="button" class="btn btn-default">Hi Admin</button>
 			              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			              </button>
-			              <ul class="dropdown-menu"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-			                <li><a href="calendar.php">Calendar View</a></li>
-			                <li><a href="includes/eventlist.php">List View</a></li>
-			                <li role="separator" class="divider"></li>
-			                <li><a href="#">Separated link</a></li>
+			              <ul class="dropdown-menu">
+			                <li><a href="../admin/admin.php">Setting</a></li>
+			                <li><a href="../admin/logout.php">Logout</a></li>
 			              </ul>
 			            </div>
 			        </div>
@@ -30,4 +30,5 @@
 	    </div>
   </nav>
 
-  
+  <script type="text/javascript" src="../vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="../vendor/js/bootstrap.min.js"></script>

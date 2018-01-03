@@ -9,11 +9,11 @@
         $ddate = $_GET['date'];
     }
 
-    //"SELECT * from tbl_event WHERE id=".$data
-    $query = "call viewDataById('$data')";
+
+    $query = "SELECT * from tbl_event WHERE eid=$data";
     $result = mysqli_query($connection, $query);
     if(!$result) {
-      die("Database query failed.");
+      die("Database query failed." . mysqli_error($connection));
     }
 
     while($row=mysqli_fetch_assoc($result)){

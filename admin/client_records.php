@@ -68,13 +68,15 @@ require_once("../includes/db_connection.php");
         }else{
             $sort = 'ASC';
         }
-        }
+       
 
         $query = "SELECT * FROM client ORDER BY $order $sort";
         $result = mysqli_query($connection, $query);
         if(!$result) {
           die("Database query failed."  . mysqli_error($connection));
         }
+
+     }
 ?>
 
 
@@ -183,6 +185,12 @@ require_once("../includes/db_connection.php");
                                                 
                                 </tbody>
                             </table> 
+                            <?php
+                                    if($rowcount==0){
+                                        echo "<span style=\"font-size: 16px;\"><b>No result.</b></span>";
+                                        // echo("<meta http-equiv='refresh' content='1'>");
+                                    }
+                                ?> 
                         </div>
                     </div>
                 </div>

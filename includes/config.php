@@ -6,14 +6,14 @@
 
 	if(isset($_POST['submit'])) { 
 		$username = mysqli_real_escape_string($connection, $_POST['username']);
-		$password = mysqli_real_escape_string($connection, $_POST['password']);
+		$password = md5(mysqli_real_escape_string($connection, $_POST['password']));
 
-			$query = "SELECT * FROM admin WHERE username='$username' AND password='$password' LIMIT 1";
+			$query = "SELECT * FROM admin WHERE username='$username' AND pword='$password' LIMIT 1";
 			$results = mysqli_query($connection, $query);
 
 			if (mysqli_num_rows($results) == 1) { 
 				$logged_in_user = mysqli_fetch_assoc($results);
-				if ($logged_in_user['user_type'] == 'admin') {
+				if ($logged_in_user['flname'] == 'admin') {
 					$_SESSION['user'] = $logged_in_user;
 					redirect_to("../admin/client_records.php");		  
 				}else{
@@ -57,8 +57,6 @@
         $event = mysqli_real_escape_string($connection, $_POST['event']);
         $stime = mysqli_real_escape_string($connection, $_POST['stime']);
         $etime = mysqli_real_escape_string($connection, $_POST['etime']);
-
-
 
         $query = "UPDATE tbl_event SET event='$event', stime='$stime', etime='$etime' WHERE eid='$id'";
         $result = mysqli_query($connection, $query);

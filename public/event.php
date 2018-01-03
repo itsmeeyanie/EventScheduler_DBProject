@@ -4,50 +4,42 @@
     include("../includes/function.php");
 
     if(isset($_GET['date'])){
-        $ddate = $_GET['date'];
-    }
+            $ddate = $_GET['date'];
+        }
 
-    $today = date_create($ddate);
+        $today = date_create($ddate);
 
-    //"call viewDataByDate('$ddate')"
-    $query = "SELECT * FROM tbl_event  WHERE rdate='$ddate'";
-    $result = mysqli_query($connection, $query);
-    if(!$result) {
-      die("Database query failed.");
-    }else{
-      $rowcount=mysqli_num_rows($result);
-    }
-    
-  ?>
+        $query = "SELECT * FROM tbl_event  WHERE rdate='$ddate'";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }else{
+          $rowcount=mysqli_num_rows($result);
+        }
 
-  <?php
+        if(isset($_GET['order'])){
+            $order = $_GET['order'];
+        }else{
+            $order = 'eid';
+        }
+
+        if(isset($_GET['sort'])){
+            $sort = $_GET['sort'];
+        }else{
+            $sort = 'ASC';
+        }
+
+        $query = "SELECT * FROM tbl_event WHERE rdate='$ddate' ORDER BY $order $sort";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }
+
+
     if(isset($_GET['id'])){
         $data = $_GET['id'];
     }
-  ?>
-
-  <?php
-    if(isset($_GET['order'])){
-        $order = $_GET['order'];
-    }else{
-        $order = 'eid';
-    }
-
-    if(isset($_GET['sort'])){
-        $sort = $_GET['sort'];
-    }else{
-        $sort = 'ASC';
-    }
-
-    $query = "SELECT * FROM tbl_event WHERE rdate='$ddate' ORDER BY $order $sort";
-    $result = mysqli_query($connection, $query);
-    if(!$result) {
-      die("Database query failed.");
-    }
-
-  ?>
-
-  <?php 
+ 
     $query2 = "SELECT DISTINCT * FROM client";
     $result2 = mysqli_query($connection, $query2);
     if(!$result2) {
@@ -59,7 +51,63 @@
     if(!$result1) {
       die("Database query failed.");
     }
-  ?>
+
+    if(isset($_POST['search'])){
+        if(isset($_GET['toSearch'])){
+            $toSearch = $_GET['toSearch'];
+        }else{
+            $toSearch = 'event';
+        }
+
+        $val = mysqli_real_escape_string($connection, $_POST['val']);
+        
+        $query = "SELECT * FROM tbl_event WHERE $toSearch regexp '$val'";
+
+
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed." . mysqli_error($connection));
+        }else{
+          $rowcount=mysqli_num_rows($result);
+        }
+
+
+    }else{
+        if(isset($_GET['date'])){
+            $ddate = $_GET['date'];
+        }
+
+        $today = date_create($ddate);
+
+        $query = "SELECT * FROM tbl_event  WHERE rdate='$ddate'";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }else{
+          $rowcount=mysqli_num_rows($result);
+        }
+
+        if(isset($_GET['order'])){
+            $order = $_GET['order'];
+        }else{
+            $order = 'eid';
+        }
+
+        if(isset($_GET['sort'])){
+            $sort = $_GET['sort'];
+        }else{
+            $sort = 'ASC';
+        }
+
+        $query = "SELECT * FROM tbl_event WHERE rdate='$ddate' ORDER BY $order $sort";
+        $result = mysqli_query($connection, $query);
+        if(!$result) {
+          die("Database query failed.");
+        }
+     }
+?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -91,13 +139,37 @@
         
         
 
-        <?php
+
+    <div class="col-md-12">
+            <?php
         if (confirm_logged_in()) {
           echo "<div class=\"col-md-3 offset-2\" style=\"float: right;\">
             <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#popUpWindow\"><i class=\"fa fa-plus-circle\"> Add Event</i></button>
         </div>";
         }
     ?>
+
+            <div class="" style="float: left;">
+                <form action="../public/event.php?date=<?php echo $ddate; ?>&&toSearch=event" method="POST">
+                    <input name="val" placeholder="Search by Event">
+                    <input type="hidden" name="search"> 
+                </form>
+            </div>
+
+            <div class="" style="float: left;">
+                <form action="../public/event.php?date=<?php echo $ddate; ?>&&toSearch=fname" method="POST">
+                    <input name="val" placeholder="Search by Name">
+                    <input type="hidden" name="search"> 
+                </form>
+            </div>
+
+            <div class="" style="float: left;">
+                <form action="../public/event.php?date=<?php echo $ddate; ?>&&toSearch=event=org" method="POST">
+                    <input name="val" placeholder="Search by Organization">
+                    <input type="hidden" name="search">
+                </form>
+            </div>
+    </div>
     
     <div class="col-md-12">
         <div class="panel-body">
@@ -301,7 +373,7 @@
 
 
 
-        $query = "UPDATE tbl_event SET event='$event', stime='$stime', etime='$etime' WHERE id='$id'";
+        $query = "UPDATE tbl_event SET event='$event', stime='$stime', etime='$etime' WHERE eid='$id'";
         $result = mysqli_query($connection, $query);
 
         if($result) {
@@ -318,7 +390,7 @@
 
             if(isset($_GET['idnum'])) { 
                 $id = mysqli_real_escape_string($connection, $_GET['idnum']);
-                $query = "DELETE FROM tbl_event WHERE id=".$id;
+                $query = "DELETE FROM tbl_event WHERE eid=$id";
                 $result = mysqli_query($connection, $query);
                 if($result) {
                     echo "SUCCESS";
