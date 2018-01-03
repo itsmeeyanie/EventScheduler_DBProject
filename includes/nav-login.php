@@ -11,9 +11,15 @@
 	              <a class="nav-link text-dark" href="../admin/index.php"> Calendar | </a>
 	            </li>
 	            <li class="nav-item ">
-	              <a class="nav-link text-dark" href="../admin/archive.php"> Archive </a>
+	              <a class="nav-link text-dark" href="../admin/archive.php"> Archive |</a>
 	            </li>
-				<li class="nav-item p-2">
+	            <li class="nav-item ">
+	              <a class="nav-link text-dark" href="../admin/admin.php"> Admin | </a>
+	            </li>
+	            <li class="nav-item ">
+	              <a class="nav-link text-dark" href="../admin/logout.php"> Logout </a>
+	            </li>
+				<!-- <li class="nav-item p-2">
 					<div class="dropdown">
 			            <div class="btn-group">
 			              <button type="button" class="btn btn-default">Hi Admin</button>
@@ -25,7 +31,7 @@
 			              </ul>
 			            </div>
 			        </div>
-			    </li>
+			    </li> -->
 			</ul>
 	    </div>
   </nav>
